@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://unpkg.com/react/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+  <style>
+    body {
+      background-color: #1E1E1E;
+    }
+    .aspect-16x9 {
+      padding-top: 56.25%;
+    }
+    .aspect-9x16 {
+      padding-top: 177.77%;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script type="text/babel">
+  function App() {
+    const [aspectRatio, setAspectRatio] = React.useState('16x9');
+
+    const toggleAspectRatio = () => {
+      setAspectRatio(aspectRatio === '16x9' ? '9x16' : '16x9');
+    };
+
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="bg-gray-800 p-4 rounded-lg shadow-lg" style={{ width: aspectRatio === '16x9' ? '640px' : '360px' }}>
+          <div className="flex justify-between items-center mb-4">
+            <h1 className="text-white text-xl">gifsource.gif</h1>
+            <div className="text-gray-400">
+              <i className={`fas fa-${aspectRatio === '16x9' ? 'compress' : 'expand'} mr-2`} onClick={toggleAspectRatio}></i>
+              <i className="fas fa-times"></i>
+            </div>
+          </div>
+          <div className={`relative ${aspectRatio === '16x9' ? 'aspect-16x9' : 'aspect-9x16'} bg-black rounded`}>
+            <img src="gifs/gifsource.gif" alt="Gif player about an very intruging video generated." className="absolute top-0 left-0 w-full h-full rounded" />
+          </div>
+          <div className="flex justify-between items-center mt-4">
+            <span className="text-gray-400 text-sm">Open source gifs. 𝗕𝗘𝗧𝗔</span>
+            <div className="text-gray-400">
+              <i className="fas fa-play mr-2"></i>
+              <i className="fas fa-pause mr-2"></i>
+              <i className="fas fa-stop mr-2"></i>
+              <i className="fas fa-step-forward mr-2"></i>
+              <i className={`fas fa-${aspectRatio === '16x9' ? 'compress' : 'expand'}`} onClick={toggleAspectRatio}></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  ReactDOM.render(<App />, document.getElementById('app'));
+</script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
